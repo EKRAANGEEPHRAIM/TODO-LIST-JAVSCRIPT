@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+  
+</head>
+<body class="min-h-screen"   >
+  <h1 class="text-5xl font-bold text-center text-black">
+    TODO LIST
+  </h1>
+
+  <div class="  bg-white p-6 rounded-2xl  shadow-lg flex  items-start justify-center gap-3 ">
+    
+<label for="input" class="text-black mt-2">Search :</label>   
+<input type="text" 
+id="input" 
+placeholder="New tasks ..." 
+class="w-60 h-10 pl-3 pr-4 py-3 border border-gray-200 bg-gray-100  rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+ >
+    
+
+    
+    <!-- button add -->
+ 
+    
+ <button id="add" class="bg-blue-500 h-10 px-4 py-2 rounded hover:bg-blue-700">ADD</button>
+ 
+<!-- button clear -->
+ 
+<button id="clear" class="bg-blue-500 h-10 px-4 py-2 rounded hover:bg-blue-700">CLEAR</button>
+ 
+ 
+ 
+<input type="text" 
+id="url" 
+placeholder="A table in JSON format"
+class="w-60 h-10 pl-3 pr-4 py-3 border border-gray-200 bg-gray-100 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+>
+ 
+ <!-- button load -->
+ 
+ <button id="load" class="bg-blue-500  px-4 py-2 rounded hover:bg-blue-700">LOAD</button>
+ 
+ 
+  </div>
+
+  <ul id="list"></ul>
+
+<script src="js/index.js"></script>
+<script src="js/arrayStorage.js"></script>
+
+</body>
+</html>
