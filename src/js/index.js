@@ -6,20 +6,26 @@ const clear = document.getElementById('clear');
 const url = document.getElementById('url');
 const load = document.getElementById('load');
 
-// const tasks = ['salle de sport','tourner des tours'];
-// //we recover the array of tasks 
-// for(let i  = 0; i < tasks.length ; i++ ){
-//     // if we have a non-empty string
-//     if(typeof tasks[i]  === 'string' && tasks[i]){
-//         const li = document.createElement('li');
-//         const remove = document.createElement('button');
-//         remove.className = "bg-blue-500 h-10 px-4 py-2 rounded hover:bg-blue-700";
+const tasks = ['salle de sport','tourner des tours'];
 
-//         li.textContent = tasks[i];
-//         remove.textContent = 'REMOVE';
+function tasksDom(task){
+     // if we have a non-empty string
+      if (typeof task === 'string' && task.trim() !== "") {
+        const li = document.createElement('li');
+        li.className = "flex items-center justify-between gap-3 py-2 "
+        const remove = document.createElement('button');
+        remove.className = "bg-blue-500 h-10 px-4 py-2 text-white rounded hover:bg-blue-700";
 
-//         li.appendChild(remove);
+        li.textContent = task;
+        remove.textContent = 'REMOVE';
 
-//         list.insertBefore(li, list.firstChild);
-//     }
-// }
+        li.appendChild(remove);
+
+        list.insertBefore(li, list.firstChild);
+    }
+}
+//Each task is added to the bulleted list 
+
+for(let i  = 0; i < tasks.length ; i++ ){
+   tasksDom(tasks[i])
+}

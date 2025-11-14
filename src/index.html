@@ -6,18 +6,25 @@
   <link href="./output.css" rel="stylesheet">
   
 </head>
-<body class="min-h-screen"   >
-  <h1 class="text-5xl font-bold text-center text-black">
+<body class="min-h-screen bg-gray-100 flex flex-col items-center p-4" >
+
+
+  <!-- title -->
+  <h1 class="text-5xl md:text-6xl  font-bold text-center text-black mb-8">
     TODO LIST
   </h1>
 
-  <div class="  bg-white p-6 rounded-2xl  shadow-lg flex  items-start justify-center gap-3 ">
+
+<!-- container -->
+<div class="w-full max-w-1/3   bg-white p-6 md:p8 rounded-2xl  shadow-lg 
+flex flex-wrap items-center justify-center gap-3 ">
     
 <label for="input" class="text-black mt-2">Search :</label>   
 <input type="text" 
 id="input" 
 placeholder="New tasks ..." 
-class="w-60 h-10 pl-3 pr-4 py-3 border border-gray-200 bg-gray-100  rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+class="w-1/3 sm:w-60 h-10 pl-3 pr-4 py-3 border border-gray-300 bg-gray-100 
+ rounded-lg focus:ring-2 focus:ring-blue-600 "
  >
     
 
@@ -25,31 +32,39 @@ class="w-60 h-10 pl-3 pr-4 py-3 border border-gray-200 bg-gray-100  rounded-lg f
     <!-- button add -->
  
     
- <button id="add" class="bg-blue-500 h-10 px-4 py-2 rounded hover:bg-blue-700">ADD</button>
+ <button id="add" 
+ class="bg-blue-500 text-white h-10 px-4  rounded hover:bg-blue-700 sm:w-auto">ADD</button>
  
 <!-- button clear -->
  
-<button id="clear" class="bg-blue-500 h-10 px-4 py-2 rounded hover:bg-blue-700">CLEAR</button>
+<button id="clear" class="bg-blue-500 text-white h-10 px-4  rounded hover:bg-blue-700 sm:w-auto">CLEAR</button>
  
  
  
 <input type="text" 
 id="url" 
 placeholder="A table in JSON format"
-class="w-60 h-10 pl-3 pr-4 py-3 border border-gray-200 bg-gray-100 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+class="w-1/3 sm:w-60 h-10 pl-3 pr-4 py-3 border border-gray-300 bg-gray-100 
+ rounded-lg focus:ring-2 focus:ring-blue-600 "
 >
  
  <!-- button load -->
  
- <button id="load" class="bg-blue-500  px-4 py-2 rounded hover:bg-blue-700">LOAD</button>
+ <button id="load" class="bg-blue-500 text-white h-10 px-4  rounded hover:bg-blue-700 sm:w-auto">LOAD</button>
  
  
   </div>
 
+  <div class="w-full max-w-1/3   bg-white p-6 md:p8 rounded-2xl  shadow-lg 
+flex flex-wrap items-center justify-center gap-3 ">
   <ul id="list"></ul>
+  </div>
 
-<script src="js/index.js"></script>
-<script src="js/arrayStorage.js"></script>
+
+  <!-- 
+ecause of defer attribute , the script is downloaded in the background without interrupting the HTML code parsing. -->
+<script defer src="js/index.js"></script> 
+<script  defer src="js/arrayStorage.js"></script>
 
 </body>
 </html>
