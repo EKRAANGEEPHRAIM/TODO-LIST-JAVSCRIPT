@@ -1,4 +1,5 @@
 'use strict'
+
 // Our application
 const list = document.getElementById('list');
 const input = document.getElementById('input');
@@ -7,12 +8,18 @@ const clear = document.getElementById('clear');
 const url = document.getElementById('url');
 const load = document.getElementById('load');
 
-const tasks = ['salle de sport','tourner des tours'];
+// New instance for the key 'tasks'
+const storage = new arrayStorage('tasks');
+
+
+// We retrieve the array of tasks 
+const tasks = storage.list;
 
 // This is a function that adds the task to the DOM with a delete button for events.
 function tasksDom(task){
      // if we have a non-empty string
       if (typeof task === 'string' && task.trim() !== "") {
+
         const li = document.createElement('li');
         li.className = "flex items-center justify-between gap-3 py-2 "
         const remove = document.createElement('button');
@@ -23,6 +30,8 @@ function tasksDom(task){
 
         remove.addEventListener("click" , 
         () => {
+            const value = remove.parentNode.firstChild.textContent;
+            storage.remove(value)
             list.removeChild(remove.parentNode);
             //To delete the child element from the list
         })
@@ -30,7 +39,10 @@ function tasksDom(task){
         li.appendChild(remove);
 
         list.insertBefore(li, list.firstChild);
+
+        return true ;
     }
+    return false
 }
 //Each task is added to the bulleted list 
 
@@ -43,6 +55,11 @@ tasks.forEach( task => {
 
 
 function newTask (){
+if (storage.list.indexOf(input.value) === -1 && tasksDom(input.value) ){
+    storage.set(input.value);
+    input.value = '';
+}
+
 input.focus(); //Performs a request to bring the window to the foreground
 
     // we manage the adding of tasks with button ADD and the touch "ENTER"
@@ -60,6 +77,7 @@ input.addEventListener('keydown', e => {
 // We clear the list from DOM and the browser
 clear.addEventListener('click', () => {
 list.innerHTML = ''; // To clear my list
+strorage.clear()
 });
 
 
