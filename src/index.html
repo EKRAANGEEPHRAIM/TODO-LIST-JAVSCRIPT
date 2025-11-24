@@ -16,10 +16,10 @@
 
 
 <!-- container -->
-<div class="w-full max-w-1/3   bg-white p-6 md:p8 rounded-2xl  shadow-lg 
-flex flex-wrap items-center justify-center gap-3 ">
+<div class="w-full md:max-w-1/3   bg-white p-6 md:p-8 rounded-2xl  shadow-lg 
+flex  flex-wrap items-center justify-center gap-3 ">
     
-<label for="input" class="text-black mt-2">Search :</label>   
+<label for="input" class="text-black mt-2">To add :</label>   
 <input type="text" 
 id="input" 
 placeholder="New tasks ..." 
@@ -43,14 +43,14 @@ class="w-1/3 sm:w-60 h-10 pl-3 pr-4 py-3 border border-gray-300 bg-gray-100
  
 <input type="text" 
 id="url" 
-placeholder="A table in JSON format"
-class="w-1/3 sm:w-60 h-10 pl-3 pr-4 py-3 border border-gray-300 bg-gray-100 
+placeholder=""
+class="w-1/3 sm:w-60 h-10 pl-3 pr-4  border border-gray-300 bg-gray-100 
  rounded-lg focus:ring-2 focus:ring-blue-600 "
 >
  
  <!-- button load -->
  
- <button id="load" class="bg-blue-500 text-white h-10 px-4  rounded hover:bg-blue-700 sm:w-auto">LOAD</button>
+ <button id="load" class="bg-green-500 text-white h-10 px-4 rounded hover:bg-green-700 sm:w-auto">LOAD</button>
  
  
   </div>
@@ -63,8 +63,9 @@ flex flex-wrap items-center justify-center gap-3 "></ul>
 
   <!-- 
 ecause of defer attribute , the script is downloaded in the background without interrupting the HTML code parsing. -->
-<script defer src="js/index.js"></script> 
 <script  defer src="js/arrayStorage.js"></script>
+<script defer src="js/index.js"></script> 
+
 
 </body>
 </html>

@@ -3,35 +3,42 @@
 // Local storage for tasks
 
 class ArrayStorage {
-    // the constructor to initialize the object with the key name and its content
-    constructor (name) {
+    constructor(name) {
         this.name = name;
         this.list = this.get();
-
     }
-// a method , which allows me to retrieve a values array  or by default , to create one.
-    get () {
-        if(!localStorage.getItem(this.name)){
-            localStorage.setItem(this.name, '[]')
+
+    // Retrieve the array or create one if missing
+    get() {
+        if (!localStorage.getItem(this.name)) {
+            localStorage.setItem(this.name, '[]');
         }
-        return JSON.parse(localStorage.getItem(this.name))
+        return JSON.parse(localStorage.getItem(this.name));
     }
 
-    // a method to add a values to the array
-    set (value) {
-
-    this.list.push(value)
-    localStorage.setItem(this.name, JSON.stringify(this.list))
+    // Save the internal list into localStorage
+    save() {
+        localStorage.setItem(this.name, JSON.stringify(this.list));
     }
 
-    // A method for removing  a value from an array
+    // Add a value and save
+    set(value) {
+        this.list.push(value);
+        this.save();
+    }
+
+    // Remove a value and save
     remove(value) {
-        const index = this.list.indexOf(value)
-        this.list.splice(index,1)
+        const index = this.list.indexOf(value);
+        if (index !== -1) {
+            this.list.splice(index, 1);
+            this.save();  // 🔥 FIX : now removal is saved
+        }
     }
 
-    // a method to clear all the contents of an array
-    clear () {
-        localStorage.removeItem(this.name)
+    // Clear everything
+    clear() {
+        this.list = []; // 🔥 FIX : reset the array in memory
+        this.save();    // or localStorage.removeItem(this.name)
     }
 }

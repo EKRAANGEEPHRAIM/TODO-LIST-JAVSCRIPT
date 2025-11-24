@@ -1,6 +1,8 @@
 'use strict'
 
-// Our application
+const { response } = require("express");
+
+// DOM elements
 const list = document.getElementById('list');
 const input = document.getElementById('input');
 const add = document.getElementById('add');
@@ -8,79 +10,77 @@ const clear = document.getElementById('clear');
 const url = document.getElementById('url');
 const load = document.getElementById('load');
 
-// New instance for the key 'tasks'
-const storage = new arrayStorage('tasks');
-
-
-// We retrieve the array of tasks 
+// Storage
+const storage = new ArrayStorage('tasks');
 const tasks = storage.list;
 
-// This is a function that adds the task to the DOM with a delete button for events.
-function tasksDom(task){
-     // if we have a non-empty string
-      if (typeof task === 'string' && task.trim() !== "") {
+// Add task to DOM
+function tasksDom(task) {
+    if (typeof task === 'string' && task.trim() !== "") {
 
         const li = document.createElement('li');
-        li.className = "flex items-center justify-between gap-3 py-2 "
+        li.className = "flex items-center justify-between gap-3 py-2";
+
         const remove = document.createElement('button');
         remove.className = "bg-blue-500 h-10 px-4 py-2 text-white rounded hover:bg-blue-700";
-
-        li.textContent = task;
         remove.textContent = 'REMOVE';
 
-        remove.addEventListener("click" , 
-        () => {
-            const value = remove.parentNode.firstChild.textContent;
-            storage.remove(value)
-            list.removeChild(remove.parentNode);
-            //To delete the child element from the list
-        })
-
+        li.textContent = task;
         li.appendChild(remove);
 
+        // Remove task
+        remove.addEventListener("click", () => {
+            const value = li.firstChild.textContent;
+            storage.remove(value);
+            list.removeChild(li);
+        });
+
         list.insertBefore(li, list.firstChild);
-
-        return true ;
+        return true;
     }
-    return false
-}
-//Each task is added to the bulleted list 
-
-// for(let i  = 0; i < tasks.length ; i++ ){
-//    tasksDom(tasks[i])
-// }
-tasks.forEach( task => {
-    tasksDom(task)
-})
-
-
-function newTask (){
-if (storage.list.indexOf(input.value) === -1 && tasksDom(input.value) ){
-    storage.set(input.value);
-    input.value = '';
+    return false;
 }
 
-input.focus(); //Performs a request to bring the window to the foreground
+// Load existing tasks
+tasks.forEach(task => tasksDom(task));
 
-    // we manage the adding of tasks with button ADD and the touch "ENTER"
+// Add new task
+function newTask() {
+    if (storage.list.indexOf(input.value) === -1 && tasksDom(input.value)) {
+        storage.set(input.value);
+        input.value = '';
+    }
+    input.focus();
 }
 
-add.addEventListener('click',newTask);
+add.addEventListener('click', newTask);
 
-// if we press on "Enter button" , my function newTasks is executed
+// Enter key
 input.addEventListener('keydown', e => {
-     if(e.key === 'Enter'){
-        newTask();
-     }
+    if (e.key === 'Enter') newTask();
 });
 
-// We clear the list from DOM and the browser
+// Clear all
 clear.addEventListener('click', () => {
-list.innerHTML = ''; // To clear my list
-strorage.clear()
+    storage.clear();
+    list.innerHTML = '';
 });
 
+// Load button 
+load.addEventListener('click', () => {
+fetch(url.value)
+.then(response => {
+    if(response.ok){
+        return response.json()
+    }
+    throw new Error(`${response.statusText} (${response.status})`)
+} )
 
-load.addEventListener('click',() => {
+.then(tasks => {
+    if(Array.isArray(tasks)){
 
+    }
+
+   
 })
+});
